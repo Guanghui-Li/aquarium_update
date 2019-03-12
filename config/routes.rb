@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tanks
   resources :colors
   resources :species
   resources :types

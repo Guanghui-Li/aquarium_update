@@ -25,7 +25,7 @@ class LivestocksController < ApplicationController
   # POST /livestocks
   # POST /livestocks.json
   def create
-    @livestock = Livestock.new(livestock_params)
+    @livestock = Livestock.new(livestock_params.permit!)
 
     respond_to do |format|
       if @livestock.save

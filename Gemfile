@@ -11,6 +11,8 @@ gem 'rails', '~> 5.0.7', '>= 5.0.7.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 
+gem 'carrierwave'
+
 gem 'bootstrap-datepicker-rails'
 
 

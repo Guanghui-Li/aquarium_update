@@ -12,26 +12,41 @@
   <% end %>
   
   <div>
-    <%= f.label :type %>
-    <%= f.collection_select :type, Type.order('name ASC').all, :id, :name %>
+    <%= f.label :stock_type %>
+    <%= f.collection_select :stock_type, Type.order('name ASC').all, :id, :name, id: :livestock_stock_type %>
   </div>
   
   <div>
     <%= f.label :species %>
-    <%= f.collection_select :species, Species.order('name ASC').all, :id, :name %>
+    <%= f.collection_select :species, Species.order('name ASC').all, :id, :name, id: :livestock_species %>
+  </div>
+  
+  <div>
+    <%= f.label :color %>
+    <%= f.collection_select :color, Color.order('name ASC').all, :id, :name, id: :livestock_color %>
   </div>
   
   <div>
     <%= f.label :purchase_date %>
-    <%= f.text_field :purchase_date, data:{ provide:'datepicker' } %>
+    <%= f.text_field :purchase_date, data:{ provide:'datepicker' }, id: :livestock_purchase_date %>
   </div>
   
   <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, id: :livestock_species%>
+  </div>
+  
+  <div>
+    <%= f.file_field :image, id: :livestock_image %>
+  </div>
+  
+  <div>
+    <%= f.label :tank %>
+    <%= f.collection_select :tank, Tank.order('name ASC').all, :id, :name, id: :livestock_tank %>
   </div>
   
   <div class="actions">
     <%= f.submit %>
   </div>
+  
 <% end %>
