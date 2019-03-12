@@ -1,0 +1,37 @@
+<%= form_for(livestock) do |f| %>
+  <% if livestock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(livestock.errors.count, "error") %> prohibited this livestock from being saved:</h2>
+
+      <ul>
+      <% livestock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label :type %>
+    <%= f.collection_select :type, Type.order('name ASC').all, :id, :name %>
+  </div>
+  
+  <div>
+    <%= f.label :species %>
+    <%= f.collection_select :species, Species.order('name ASC').all, :id, :name %>
+  </div>
+  
+  <div>
+    <%= f.label :purchase_date %>
+    <%= f.text_field :purchase_date, data:{ provide:'datepicker' } %>
+  </div>
+  
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
