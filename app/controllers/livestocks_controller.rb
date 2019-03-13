@@ -15,7 +15,6 @@ class LivestocksController < ApplicationController
   # GET /livestocks/new
   def new
     @livestock = Livestock.new
-    @types = Type.all
   end
 
   # GET /livestocks/1/edit
@@ -42,7 +41,7 @@ class LivestocksController < ApplicationController
   # PATCH/PUT /livestocks/1.json
   def update
     respond_to do |format|
-      if @livestock.update(livestock_params)
+      if @livestock.update(livestock_params.permit!)
         format.html { redirect_to @livestock, notice: 'Livestock was successfully updated.' }
         format.json { render :show, status: :ok, location: @livestock }
       else

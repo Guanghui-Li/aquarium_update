@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190312154013) do
+ActiveRecord::Schema.define(version: 20190313163954) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20190312154013) do
   end
 
   create_table "livestocks", force: :cascade do |t|
-    t.integer  "stock_type"
-    t.integer  "species"
+    t.integer  "stock_type_id"
+    t.integer  "species_id"
     t.date     "purchase_date"
     t.string   "status"
     t.text     "cause"
     t.date     "event_date"
-    t.string   "color"
+    t.integer  "color_id"
     t.text     "name"
     t.string   "image"
     t.integer  "tank"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 20190312154013) do
   end
 
   create_table "species", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

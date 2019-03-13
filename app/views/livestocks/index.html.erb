@@ -12,6 +12,9 @@
   <tbody>
     <% @livestocks.each do |livestock| %>
       <tr>
+        <td><%= livestock.color.name %></td>
+        <td><%= livestock.species.name %></td>
+        <td><%= livestock.purchase_date %></td>
         <td><%= link_to 'Show', livestock %></td>
         <td><%= link_to 'Edit', edit_livestock_path(livestock) %></td>
         <td><%= link_to 'Destroy', livestock, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,17 +13,17 @@
   
   <div>
     <%= f.label :stock_type %>
-    <%= f.collection_select :stock_type, Type.order('name ASC').all, :id, :name, id: :livestock_stock_type %>
+    <%= f.collection_select :stock_type_id, StockType.order('name ASC').all, :id, :name, id: :livestock_stock_type %>
   </div>
   
   <div>
     <%= f.label :species %>
-    <%= f.collection_select :species, Species.order('name ASC').all, :id, :name, id: :livestock_species %>
+    <%= f.collection_select :species_id, Species.order('name ASC').all, :id, :name, id: :livestock_species %>
   </div>
   
   <div>
     <%= f.label :color %>
-    <%= f.collection_select :color, Color.order('name ASC').all, :id, :name, id: :livestock_color %>
+    <%= f.collection_select :color_id, Color.order('name ASC').all, :id, :name, id: :livestock_color %>
   </div>
   
   <div>
