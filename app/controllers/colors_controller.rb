@@ -4,7 +4,7 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    @colors = Color.order(:name).all
   end
 
   # GET /colors/1

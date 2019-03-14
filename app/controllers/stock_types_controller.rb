@@ -4,7 +4,7 @@ class StockTypesController < ApplicationController
   # GET /stock_types
   # GET /stock_types.json
   def index
-    @stock_types = StockType.all
+    @stock_types = StockType.order(:name).all
   end
 
   # GET /stock_types/1
