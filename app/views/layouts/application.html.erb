@@ -19,7 +19,9 @@
     <%= stylesheet_link_tag :googleapi, "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"%>
 
     <!-- Custom styles for this template-->
-    <%= stylesheet_link_tag "sb-admin-2.min" %>
+    <%= stylesheet_link_tag "sb-admin-2.min.css" %>
+    
+    <%= stylesheet_link_tag "custom.css" %>
   </head>
 
 <body id="page-top">
@@ -45,32 +47,8 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <%= render "inc/sb-admin/searchBar"%>
-
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <%= render "inc/sb-admin/alert/alertIcon"%>
-              <!-- Dropdown - Alerts -->
-              <%= render "inc/sb-admin/alert/alertDropdown"%>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <%= render "inc/sb-admin/message/messageIcon"%>
-              <!-- Dropdown - Messages -->
-              <%= render "inc/sb-admin/message/messageDropdown"%>
-            </li>
-
-            <%= render "inc/sb-admin/dividerVertical"%>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                <%= render "inc/sb-admin/userOption"%>
-            </li>
-          </ul>
+          <%= render "inc/sb-admin/topbar"%>
         </nav>
         <!-- End of Topbar -->
 
