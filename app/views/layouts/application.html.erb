@@ -10,8 +10,8 @@
     <title><%= yield :title %></title>
 
     <%= csrf_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
       <!-- Custom fonts for this template-->
     <%= stylesheet_link_tag "fontawesome-free/css/all.min.css" %>
@@ -22,6 +22,7 @@
     <%= stylesheet_link_tag "sb-admin-2.min.css" %>
     
     <%= stylesheet_link_tag "custom.css" %>
+    
   </head>
 
 <body id="page-top">
@@ -81,23 +82,11 @@
   <!-- Logout Modal-->
   <%= render "inc/sb-admin/logoutModal" %>
 
-  <!-- Bootstrap core JavaScript-->
-  <%= javascript_include_tag "jquery/jquery.min.js" %>
-  <%= javascript_include_tag "bootstrap/bootstrap.bundle.min.js" %>
-
-
-  <!-- Core plugin JavaScript-->
-  <%= javascript_include_tag "jquery-easing/jquery.easing.min.js" %>
 
   <!-- Custom scripts for all pages-->
   <%= javascript_include_tag "sb-admin/sb-admin-2.min.js" %>
 
-  <!-- Page level plugins -->
-  <%= javascript_include_tag "sb-admin/chart.js/Chart.min.js" %>
 
-  <!-- Page level custom scripts -->
-  <%= javascript_include_tag "sb-admin/demo/chart-area-demo.js" %>
-  <%= javascript_include_tag "sb-admin/demo/chart-pie-demo.js" %>
 
 </body>
 

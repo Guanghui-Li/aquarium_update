@@ -14,6 +14,9 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'carrierwave'
 
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+gem 'jquery-easing-rails', '~> 0.0.2'
 
 
 # Use Puma as the app server
