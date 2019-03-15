@@ -1,6 +1,7 @@
 class Livestock < ApplicationRecord
     belongs_to :stock_type
     belongs_to :species
+    belongs_to :status
     # has_one :color
     # belongs_to :tank
     belongs_to :color

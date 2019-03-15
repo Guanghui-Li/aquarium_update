@@ -57,6 +57,9 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
           <%= yield %>
         </div>
         <!-- /.container-fluid -->
@@ -87,8 +90,6 @@
   <%= javascript_include_tag "sb-admin/sb-admin-2.min.js" %>
   
   <%= javascript_include_tag "custom.js" %>
-
-
 
 </body>
 
