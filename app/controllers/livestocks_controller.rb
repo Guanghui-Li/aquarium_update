@@ -28,7 +28,8 @@ class LivestocksController < ApplicationController
 
     respond_to do |format|
       if @livestock.save
-        format.html { redirect_to @livestock, notice: 'Livestock was successfully created.' }
+        format.html { redirect_to @livestock }
+        flash[:success] = "Livestock was successfully created"
         format.json { render :show, status: :created, location: @livestock }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class LivestocksController < ApplicationController
   def update
     respond_to do |format|
       if @livestock.update(livestock_params.permit!)
-        format.html { redirect_to @livestock, notice: 'Livestock was successfully updated.' }
+        format.html { redirect_to @livestock }
+        flash[:success] = "Livestock was successfully updated"
         format.json { render :show, status: :ok, location: @livestock }
       else
         format.html { render :edit }
@@ -54,10 +56,21 @@ class LivestocksController < ApplicationController
   # DELETE /livestocks/1
   # DELETE /livestocks/1.json
   def destroy
-    @livestock.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to livestocks_url, notice: 'Livestock was successfully destroyed.' }
-      format.json { head :no_content }
+      if @livestock.destroy
+        format.html { redirect_to livestocks_url }
+        flash[:success] = 'Livestock was successfully destroyed'
+        format.json { head :no_content }
+      else
+        format.html { redirect_to livestocks_url}
+        @livestock.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<br/>")
+        format.json { head :no_content }
+      end
     end
   end
 

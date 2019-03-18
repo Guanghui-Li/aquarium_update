@@ -1,16 +1,20 @@
-<%= form_for(color) do |f| %>
-  <% if color.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(color.errors.count, "error") %> prohibited this color from being saved:</h2>
 
+<%= form_for(color) do |f| %>
+  <div class="card">
+  <% if color.errors.any? %>
+    <div class="card-header bg-danger text-white">
+      <%= pluralize(color.errors.count, "error") %> prohibited this color from being saved:
+    </div>
+    <div class="card-body">
       <ul>
       <% color.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="card-text"><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-  
+  </div>
+
   <form>
     <div class="form-group">
         <%= f.label :name %>
@@ -22,3 +26,5 @@
     </div>
   </form>
 <% end %>
+
+

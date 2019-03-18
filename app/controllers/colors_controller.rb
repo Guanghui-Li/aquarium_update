@@ -28,7 +28,8 @@ class ColorsController < ApplicationController
 
     respond_to do |format|
       if @color.save
-        format.html { redirect_to @color, notice: 'Color was successfully created.' }
+        format.html { redirect_to @color }
+        flash[:success] = @color.name + ' was successfully created'
         format.json { render :show, status: :created, location: @color }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class ColorsController < ApplicationController
   def update
     respond_to do |format|
       if @color.update(color_params)
-        format.html { redirect_to @color, notice: 'Color was successfully updated.' }
+        format.html { redirect_to @color }
+        flash[:success] = @color.name + ' was successfully updated'
         format.json { render :show, status: :ok, location: @color }
       else
         format.html { render :edit }
@@ -54,13 +56,19 @@ class ColorsController < ApplicationController
   # DELETE /colors/1
   # DELETE /colors/1.json
   def destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
       if @color.destroy
-        format.html { redirect_to colors_url, notice: 'Color was successfully destroyed.' }
+        format.html { redirect_to colors_url }
+        flash[:success] = @color.name + ' was successfully destroyed'
         format.json { head :no_content }
       else
         format.html { redirect_to colors_url}
-        flash[:warning] = "There are livestocks associated with this color"
+        @color.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<br/>")
         format.json { head :no_content }
       end
     end

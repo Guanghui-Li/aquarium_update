@@ -28,7 +28,8 @@ class StatusesController < ApplicationController
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to @status, notice: 'Status was successfully created.' }
+        format.html { redirect_to @status }
+        flash[:success] = @status.name + " was successfully created"
         format.json { render :show, status: :created, location: @status }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to @status, notice: 'Status was successfully updated.' }
+        format.html { redirect_to @status }
+        flash[:success] = @status.name + " was successfully updated"
         format.json { render :show, status: :ok, location: @status }
       else
         format.html { render :edit }
@@ -54,10 +56,21 @@ class StatusesController < ApplicationController
   # DELETE /statuses/1
   # DELETE /statuses/1.json
   def destroy
-    @status.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: 'Status was successfully destroyed.' }
-      format.json { head :no_content }
+      if @status.destroy
+        format.html { redirect_to statuses_url }
+        flash[:success] = @status.name + ' was successfully destroyed'
+        format.json { head :no_content }
+      else
+        format.html { redirect_to statuses_url}
+        @status.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<br/>")
+        format.json { head :no_content }
+      end
     end
   end
 

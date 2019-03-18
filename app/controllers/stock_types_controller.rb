@@ -28,7 +28,8 @@ class StockTypesController < ApplicationController
 
     respond_to do |format|
       if @stock_type.save
-        format.html { redirect_to @stock_type, notice: 'Stock type was successfully created.' }
+        format.html { redirect_to @stock_type }
+        flash[:success] = @stock_type.name + ' was successfully created'
         format.json { render :show, status: :created, location: @stock_type }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class StockTypesController < ApplicationController
   def update
     respond_to do |format|
       if @stock_type.update(stock_type_params)
-        format.html { redirect_to @stock_type, notice: 'Stock type was successfully updated.' }
+        format.html { redirect_to @stock_type }
+        flash[:success] = @stock_type.name + ' was successfully updated'
         format.json { render :show, status: :ok, location: @stock_type }
       else
         format.html { render :edit }
@@ -54,10 +56,21 @@ class StockTypesController < ApplicationController
   # DELETE /stock_types/1
   # DELETE /stock_types/1.json
   def destroy
-    @stock_type.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to stock_types_url, notice: 'Stock type was successfully destroyed.' }
-      format.json { head :no_content }
+      if @stock_type.destroy
+        format.html { redirect_to stock_types_url }
+        flash[:success] = @stock_type.name + ' was successfully destroyed'
+        format.json { head :no_content }
+      else
+        format.html { redirect_to stock_types_url}
+        @stock_type.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<br/>")
+        format.json { head :no_content }
+      end
     end
   end
 

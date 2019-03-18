@@ -1,15 +1,18 @@
 <%= form_for(status) do |f| %>
-  <% if status.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(status.errors.count, "error") %> prohibited this status from being saved:</h2>
-
-      <ul>
-      <% status.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="card">
+    <% if status.errors.any? %>
+      <div class="card-header bg-danger text-white">
+        <%= pluralize(status.errors.count, "error") %> prohibited this status from being saved:
+      </div>
+      <div class="card-body">
+        <ul>
+        <% status.errors.full_messages.each do |message| %>
+          <li class="card-text"><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
   
   <form>
     <div class="form-group">

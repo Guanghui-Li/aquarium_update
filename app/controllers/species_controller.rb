@@ -28,7 +28,8 @@ class SpeciesController < ApplicationController
 
     respond_to do |format|
       if @species.save
-        format.html { redirect_to @species, notice: 'Species was successfully created.' }
+        format.html { redirect_to @species }
+        flash[:success] = @species.name + " was successfully created"
         format.json { render :show, status: :created, location: @species }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class SpeciesController < ApplicationController
   def update
     respond_to do |format|
       if @species.update(species_params)
-        format.html { redirect_to @species, notice: 'Species was successfully updated.' }
+        format.html { redirect_to @species }
+        flash[:success] = @species.name + " was successfully updated"
         format.json { render :show, status: :ok, location: @species }
       else
         format.html { render :edit }
@@ -54,10 +56,21 @@ class SpeciesController < ApplicationController
   # DELETE /species/1
   # DELETE /species/1.json
   def destroy
-    @species.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to species_index_url, notice: 'Species was successfully destroyed.' }
-      format.json { head :no_content }
+      if @species.destroy
+        format.html { redirect_to species_index_url }
+        flash[:success] = @species.name + " was successfully destroyed"
+        format.json { head :no_content }
+      else
+        format.html { redirect_to species_index_url}
+        @species.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<\br>")
+        format.json { head :no_content }
+      end
     end
   end
 
