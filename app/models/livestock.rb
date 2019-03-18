@@ -2,9 +2,9 @@ class Livestock < ApplicationRecord
     belongs_to :stock_type
     belongs_to :species
     belongs_to :status
-    # has_one :color
     # belongs_to :tank
     belongs_to :color
+    has_many :histories
     mount_uploader :image, ImageUploader
     
     validates :stock_type, presence: true

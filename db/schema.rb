@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315162205) do
+ActiveRecord::Schema.define(version: 20190318132916) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
@@ -18,13 +18,20 @@ ActiveRecord::Schema.define(version: 20190315162205) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.integer  "livestock_id"
+    t.string   "event"
+    t.string   "image"
+    t.string   "event_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "livestocks", force: :cascade do |t|
     t.integer  "stock_type_id"
     t.integer  "species_id"
     t.string   "purchase_date"
     t.integer  "status_id"
-    t.text     "cause"
-    t.string   "event_date"
     t.integer  "color_id"
     t.text     "name"
     t.string   "image"

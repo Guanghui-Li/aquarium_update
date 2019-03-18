@@ -10,6 +10,12 @@ class LivestocksController < ApplicationController
   # GET /livestocks/1
   # GET /livestocks/1.json
   def show
+    if session[:created] == "created"
+      history = History.new(livestock_id: params[:id], event: "Purchased", event_date: @livestock.purchase_date, image: @livestock.image)
+      history.save!
+      session.delete(:created)
+    end
+    @events = History.where("livestock_id = " + @livestock.id.to_s)
   end
 
   # GET /livestocks/new
@@ -28,9 +34,10 @@ class LivestocksController < ApplicationController
 
     respond_to do |format|
       if @livestock.save
-        format.html { redirect_to @livestock }
-        flash[:success] = "Livestock was successfully created"
-        format.json { render :show, status: :created, location: @livestock }
+          format.html { redirect_to @livestock }
+          flash[:success] = "Livestock was successfully created"
+          format.json { render :show, status: :created, location: @livestock }
+          session[:created] = "created"
       else
         format.html { render :new }
         format.json { render json: @livestock.errors, status: :unprocessable_entity }

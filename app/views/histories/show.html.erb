@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Livestock:</strong>
+  <%= @history.livestock_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @history.event %>
+</p>
+
+<%= link_to 'Edit', edit_history_path(@history) %> |
+<%= link_to 'Back', histories_path %>

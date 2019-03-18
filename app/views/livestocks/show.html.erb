@@ -1,4 +1,57 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Livestocks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Color</th>
+      <th scope="col">Species</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+      <tr scope="row">
+        <td><%= image_tag @livestock.image_url, width: "100px", height: "100px" if @livestock.image.present? %></td>
+        <td><%= @livestock.color.name %></td>
+        <td><%= @livestock.species.name %></td>
+        <td><%= @livestock.purchase_date %></td>
+      </tr>
+
+  </tbody>
+</table>
+
+<%= link_to 'Back', livestocks_path %> |
 <%= link_to 'Edit', edit_livestock_path(@livestock) %> |
-<%= link_to 'Back', livestocks_path %>
+<%= link_to 'Destroy', @livestock, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Event Date</th>
+      <th scope="col">Event</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% @events.each do |event| %>
+      <tr scope="row">
+        <td><%= event.event_date %></td>
+        <td><%= event.event %></td>
+        <td><%= image_tag event.image_url, width: "100px", height: "100px" if @livestock.image.present? %></td>
+        <td><%= link_to 'Edit', edit_history_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
