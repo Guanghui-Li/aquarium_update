@@ -11,7 +11,7 @@
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
+<!-- Nav Item - Tank -->
 <li class="nav-item <%= current_class?(tanks_path) %>">
   <%= link_to tanks_path, { :class => "nav-link"} do %>
     <i class="fas fa-glass-whiskey"></i>
@@ -19,11 +19,19 @@
   <% end %>
 </li>
 
-
+<!-- Nav Item - Livestock index -->
 <li class="nav-item <%= current_class?(livestocks_path) %>">
   <%= link_to livestocks_path, { :class => "nav-link"} do %>
     <i class="fas fa-fish"></i>
     <span>Livestocks</span></a>
+  <% end %>
+</li>
+
+<!-- Nav Item - Livestock create bulk -->
+<li class="nav-item <%= current_class?(livestocks_bulk_new_path) %>">
+  <%= link_to livestocks_bulk_new_path, { :class => "nav-link"} do %>
+    <i class="fas fa-truck-moving"></i>
+    <span>Add Bulk</span></a>
   <% end %>
 </li>
 
