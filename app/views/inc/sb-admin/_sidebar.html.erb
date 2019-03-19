@@ -11,19 +11,19 @@
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Tank -->
-<li class="nav-item <%= current_class?(tanks_path) %>">
-  <%= link_to tanks_path, { :class => "nav-link"} do %>
-    <i class="fas fa-glass-whiskey"></i>
-    <span>Tanks</span></a>
-  <% end %>
-</li>
-
 <!-- Nav Item - Livestock index -->
 <li class="nav-item <%= current_class?(livestocks_path) %>">
   <%= link_to livestocks_path, { :class => "nav-link"} do %>
     <i class="fas fa-fish"></i>
     <span>Livestocks</span></a>
+  <% end %>
+</li>
+
+<!-- Nav Item - Tank -->
+<li class="nav-item <%= current_class?(tanks_path) %>">
+  <%= link_to tanks_path, { :class => "nav-link"} do %>
+    <i class="fas fa-glass-whiskey"></i>
+    <span>Tanks</span></a>
   <% end %>
 </li>
 

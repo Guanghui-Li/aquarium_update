@@ -28,7 +28,7 @@ class StatusesController < ApplicationController
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to @status }
+        format.html { redirect_to statuses_path }
         flash[:success] = @status.name + " was successfully created"
         format.json { render :show, status: :created, location: @status }
       else
@@ -43,7 +43,7 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to @status }
+        format.html { redirect_to statuses_path }
         flash[:success] = @status.name + " was successfully updated"
         format.json { render :show, status: :ok, location: @status }
       else

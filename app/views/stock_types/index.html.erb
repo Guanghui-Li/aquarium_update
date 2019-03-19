@@ -14,8 +14,8 @@
     <% @stock_types.each do |stock_type| %>
       <tr>
         <td><%= stock_type.name %></td>
-        <td><%= link_to 'Edit', edit_stock_type_path(stock_type) %></td>
-        <td><%= link_to 'Destroy', stock_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Destroy', stock_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Stock Type', new_stock_type_path %>
+<%= link_to 'New Stock Type', new_stock_type_path, class: "btn btn-primary" %>

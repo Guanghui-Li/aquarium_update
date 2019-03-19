@@ -12,8 +12,8 @@
     <% @colors.each do |color| %>
       <tr>
         <td><%= color.name %></td>
-        <td><%= link_to 'Edit', edit_color_path(color) %></td>
-        <td><%= link_to 'Delete', color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_color_path(color), class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Delete', color, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +21,4 @@
 
 <br>
 
-<%= link_to 'New Color', new_color_path %>
+<%= link_to 'New Color', new_color_path, class: "btn btn-primary" %>

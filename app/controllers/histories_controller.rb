@@ -33,7 +33,8 @@ class HistoriesController < ApplicationController
 
     if @history.save
       respond_to do |format|
-        format.html { redirect_to @history, notice: 'History was successfully created.' }
+        format.html { redirect_to "/livestocks/" + @history.livestock_id.to_s }
+        flash[:success] = 'Event was successfully created'
         format.json { render :show, status: :created, location: @history }
       end
     else
@@ -50,7 +51,8 @@ class HistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @history.update(history_params)
-        format.html { redirect_to @history, notice: 'History was successfully updated.' }
+        format.html { redirect_to @history }
+        flash[:success] = 'Event was successfully updated'
         format.json { render :show, status: :ok, location: @history }
       else
         format.html { render :edit }
@@ -62,10 +64,21 @@ class HistoriesController < ApplicationController
   # DELETE /histories/1
   # DELETE /histories/1.json
   def destroy
-    @history.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to histories_url, notice: 'History was successfully destroyed.' }
-      format.json { head :no_content }
+      if @history.destroy
+        format.html { redirect_to :back }
+        flash[:success] = 'Event was successfully destroyed'
+        format.json { head :no_content }
+      else
+        format.html { redirect_to histories_url}
+        @history.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<br/>")
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -28,7 +28,7 @@ class StockTypesController < ApplicationController
 
     respond_to do |format|
       if @stock_type.save
-        format.html { redirect_to @stock_type }
+        format.html { redirect_to stock_types_path }
         flash[:success] = @stock_type.name + ' was successfully created'
         format.json { render :show, status: :created, location: @stock_type }
       else
@@ -43,7 +43,7 @@ class StockTypesController < ApplicationController
   def update
     respond_to do |format|
       if @stock_type.update(stock_type_params)
-        format.html { redirect_to @stock_type }
+        format.html { redirect_to stock_types_path }
         flash[:success] = @stock_type.name + ' was successfully updated'
         format.json { render :show, status: :ok, location: @stock_type }
       else

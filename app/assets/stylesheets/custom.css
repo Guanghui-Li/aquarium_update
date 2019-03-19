@@ -2,6 +2,10 @@
     width:100px;
 }
 
+.btn-round{
+  border-radius: 50%;
+}
+
 .btn-upload-wrapper {
   padding-top: 10px;
   position: relative;

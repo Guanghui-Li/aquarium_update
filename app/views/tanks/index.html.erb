@@ -14,8 +14,8 @@
     <% @tanks.each do |tank| %>
       <tr>
         <td><%= link_to tank.name, tank %></td>
-        <td><%= link_to 'Edit', edit_tank_path(tank) %></td>
-        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure? This action will delete all the existing livestocks that are associated with this tank' } %></td>
+        <td><%= link_to 'Edit', edit_tank_path(tank), class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure? This action will delete all the existing livestocks that are associated with this tank' }, class: "btn btn-outline-primary btn-round" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Tank', new_tank_path %>
+<%= link_to 'New Tank', new_tank_path, class: "btn btn-primary" %>
