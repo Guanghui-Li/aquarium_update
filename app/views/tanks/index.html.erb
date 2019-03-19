@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to tank.name, tank %></td>
         <td><%= link_to 'Edit', edit_tank_path(tank), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure? This action will delete all the existing livestocks that are associated with this tank' }, class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Delete', tank, method: :delete, data: { confirm: 'Are you sure? This action will delete all the existing livestocks that are associated with this tank' }, class: "btn btn-outline-primary btn-round" %></td>
       </tr>
     <% end %>
   </tbody>

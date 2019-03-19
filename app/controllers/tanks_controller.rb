@@ -62,7 +62,7 @@ class TanksController < ApplicationController
     respond_to do |format|
       if @tank.destroy
         format.html { redirect_to tanks_url }
-        flash[:success] = @tank.name + " was successfully destroyed"
+        flash[:success] = @tank.name + " was successfully deleted"
         format.json { head :no_content }
       else
         format.html { redirect_to tanks_url}

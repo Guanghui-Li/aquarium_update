@@ -61,7 +61,7 @@ class ColorsController < ApplicationController
     respond_to do |format|
       if @color.destroy
         format.html { redirect_to colors_url }
-        flash[:success] = @color.name + ' was successfully destroyed'
+        flash[:success] = @color.name + ' was successfully deleted'
         format.json { head :no_content }
       else
         format.html { redirect_to colors_url}

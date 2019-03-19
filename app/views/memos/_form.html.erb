@@ -1,0 +1,30 @@
+<%= form_for(memo) do |f| %>
+  <div class="card">
+    <% if memo.errors.any? %>
+      <div class="card-header bg-danger text-white">
+        <%= pluralize(memo.errors.count, "error") %> prohibited this memo from being saved:
+      </div>
+        <ul>
+        <% memo.errors.full_messages.each do |message| %>
+          <li class="card-text"><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :memo_date %>
+    <%= f.text_field :memo_date, data:{ provide:'datepicker' }, id: :memo_date, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>

@@ -61,7 +61,7 @@ class SpeciesController < ApplicationController
     respond_to do |format|
       if @species.destroy
         format.html { redirect_to species_index_url }
-        flash[:success] = @species.name + " was successfully destroyed"
+        flash[:success] = @species.name + " was successfully deleted"
         format.json { head :no_content }
       else
         format.html { redirect_to species_index_url}

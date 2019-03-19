@@ -61,7 +61,7 @@ class StockTypesController < ApplicationController
     respond_to do |format|
       if @stock_type.destroy
         format.html { redirect_to stock_types_url }
-        flash[:success] = @stock_type.name + ' was successfully destroyed'
+        flash[:success] = @stock_type.name + ' was successfully deleted'
         format.json { head :no_content }
       else
         format.html { redirect_to stock_types_url}

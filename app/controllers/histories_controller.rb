@@ -69,7 +69,7 @@ class HistoriesController < ApplicationController
     respond_to do |format|
       if @history.destroy
         format.html { redirect_to :back }
-        flash[:success] = 'Event was successfully destroyed'
+        flash[:success] = 'Event was successfully deleted'
         format.json { head :no_content }
       else
         format.html { redirect_to histories_url}

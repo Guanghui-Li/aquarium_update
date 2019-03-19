@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :memos
   root 'livestocks#index'
   get 'livestocks/bulk_new', to: 'livestocks#bulk_new'
   post 'livestocks/bulk_create', to: 'livestocks#bulk_create'

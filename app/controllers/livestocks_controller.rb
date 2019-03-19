@@ -103,7 +103,7 @@ class LivestocksController < ApplicationController
     if @livestock.destroy
       respond_to do |format|
         format.html { redirect_to :back }
-        flash[:success] = 'Livestock was successfully destroyed'
+        flash[:success] = 'Livestock was successfully deleted'
         format.json { head :no_content }
       end
     else

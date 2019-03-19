@@ -15,7 +15,7 @@
       <tr>
         <td><%= stock_type.name %></td>
         <td><%= link_to 'Edit', edit_stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Destroy', stock_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Delete', stock_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
       </tr>
     <% end %>
   </tbody>

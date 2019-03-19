@@ -61,7 +61,7 @@ class StatusesController < ApplicationController
     respond_to do |format|
       if @status.destroy
         format.html { redirect_to statuses_url }
-        flash[:success] = @status.name + ' was successfully destroyed'
+        flash[:success] = @status.name + ' was successfully deleted'
         format.json { head :no_content }
       else
         format.html { redirect_to statuses_url}

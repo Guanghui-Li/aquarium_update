@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Memos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Memo date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td><%= memo.description %></td>
+        <td><%= memo.memo_date %></td>
+        <td><%= link_to 'Edit', edit_memo_path(memo), class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Delete', memo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Memo', new_memo_path, class: "btn btn-primary" %>
