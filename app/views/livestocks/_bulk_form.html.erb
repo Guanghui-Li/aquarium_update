@@ -1,4 +1,4 @@
-<%= form_for(livestock) do |f| %>
+<%= form_for(livestock, :url => livestocks_bulk_create_path ) do |f| %>
   <% if livestock.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(livestock.errors.count, "error") %> prohibited this livestock from being saved:</h2>
@@ -42,18 +42,14 @@
       <%= f.text_field :name, id: :livestock_species, class: "form-control"%>
     </div>
     
-    
-    <div class="form-group">
-      <div class="btn-upload-wrapper">
-        <button class="btn-upload">Upload Image</button>
-        <%= f.file_field :image, id: :livestock_image, class: "myfile"%>
-        <label id="image-label"> </label>
-      </div>
-    </div>
-    
     <div class="form-group">
       <%= f.label :tank %>
       <%= f.collection_select :tank_id, Tank.order('name ASC').all, :id, :name, {id: :livestock_tank}, {class: "form-control"} %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, id: :quantity, class: "form-control"%>
     </div>
     
     <div class="actions">

@@ -2,7 +2,7 @@
 
 <h1>Tanks</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,10 +13,9 @@
   <tbody>
     <% @tanks.each do |tank| %>
       <tr>
-        <td><%= tank.name %></td>
-        <td><%= link_to 'Show', tank %></td>
+        <td><%= link_to tank.name, tank %></td>
         <td><%= link_to 'Edit', edit_tank_path(tank) %></td>
-        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure? This action will delete all the existing livestocks that are associated with this tank' } %></td>
       </tr>
     <% end %>
   </tbody>

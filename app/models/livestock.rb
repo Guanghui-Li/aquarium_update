@@ -2,11 +2,13 @@ class Livestock < ApplicationRecord
     belongs_to :stock_type
     belongs_to :species
     belongs_to :status
-    # belongs_to :tank
+    belongs_to :tank
     belongs_to :color
     has_many :histories
     mount_uploader :image, ImageUploader
     
+    attr_accessor :quantity
+     
     validates :stock_type, presence: true
     validates :species, presence: true
     validates :purchase_date, presence: true

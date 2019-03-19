@@ -34,13 +34,49 @@ class LivestocksController < ApplicationController
         format.html { redirect_to @livestock }
         flash[:success] = "Livestock was successfully created"
         format.json { render :show, status: :created, location: @livestock }
-        session[:created] = "created"
       end
     else
       respond_to do |format|
         format.html { render :new }
         format.json { render json: @livestock.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  # GET /livestocks/new
+  def bulk_new
+    @livestock = Livestock.new
+  end
+  
+  # POST /livestocks
+  # POST /livestocks.json
+  def bulk_create
+    quantity = livestock_params[:quantity].to_i
+    success = 0;
+    
+    if quantity == 0
+      redirect_to ('/livestocks/bulk_new')
+      flash[:warning] = "quantity can't be left blank"
+      return
+    else
+      quantity.times{
+        @livestock = Livestock.new(livestock_params.permit!)
+        if @livestock.save
+          success = success + 1;
+          history = History.new(livestock_id: @livestock.id, event: "Purchased", event_date: @livestock.purchase_date, image: @livestock.image)
+          history.save!
+        else
+          respond_to do |format|
+            format.html { render "livestocks/bulk_new" }
+            format.json { render json: @livestock.errors, status: :unprocessable_entity }
+          end
+          break
+        end
+      }
+    end
+    if success == quantity
+      redirect_to ('/livestocks')
+      flash[:success] = quantity.to_s + " livestocks were successfully created"
     end
   end
 
@@ -63,22 +99,24 @@ class LivestocksController < ApplicationController
   # DELETE /livestocks/1.json
   def destroy
     error_messages = []
-    bullet = '&#8226 '
-    respond_to do |format|
+    bullet = '&#8226'
       if @livestock.destroy
-        format.html { redirect_to livestocks_url }
-        flash[:success] = 'Livestock was successfully destroyed'
-        format.json { head :no_content }
-      else
-        format.html { redirect_to livestocks_url}
-        @livestock.errors.full_messages.each do |message|
-          error_messages.push(bullet + message)
+        respond_to do |format|
+          format.html { redirect_to :back }
+          flash[:success] = 'Livestock was successfully destroyed'
+          format.json { head :no_content }
         end
-        flash[:warning] = error_messages.join("<br/>")
-        format.json { head :no_content }
+      else
+        respond_to do |format|
+          format.html { redirect_to livestocks_url}
+          @livestock.errors.full_messages.each do |message|
+            error_messages.push(bullet + message)
+          end
+          flash[:warning] = error_messages.join("<br/>")
+          format.json { head :no_content }
+        end
       end
     end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

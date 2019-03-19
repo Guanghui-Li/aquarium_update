@@ -4,12 +4,13 @@ class TanksController < ApplicationController
   # GET /tanks
   # GET /tanks.json
   def index
-    @tanks = Tank.all
+    @tanks = Tank.order(:name).all
   end
 
   # GET /tanks/1
   # GET /tanks/1.json
   def show
+    @livestocks = Livestock.where("tank_id = " + params[:id].to_s)
   end
 
   # GET /tanks/new
@@ -28,7 +29,8 @@ class TanksController < ApplicationController
 
     respond_to do |format|
       if @tank.save
-        format.html { redirect_to @tank, notice: 'Tank was successfully created.' }
+        format.html { redirect_to @tank }
+        flash[:success] = @tank.name + " was successfully created"
         format.json { render :show, status: :created, location: @tank }
       else
         format.html { render :new }
@@ -42,7 +44,8 @@ class TanksController < ApplicationController
   def update
     respond_to do |format|
       if @tank.update(tank_params)
-        format.html { redirect_to @tank, notice: 'Tank was successfully updated.' }
+        format.html { redirect_to @tank }
+        flash[:success] = @tank.name + " was successfully updated"
         format.json { render :show, status: :ok, location: @tank }
       else
         format.html { render :edit }
@@ -54,10 +57,21 @@ class TanksController < ApplicationController
   # DELETE /tanks/1
   # DELETE /tanks/1.json
   def destroy
-    @tank.destroy
+    error_messages = []
+    bullet = '&#8226 '
     respond_to do |format|
-      format.html { redirect_to tanks_url, notice: 'Tank was successfully destroyed.' }
-      format.json { head :no_content }
+      if @tank.destroy
+        format.html { redirect_to tanks_url }
+        flash[:success] = @tank.name + " was successfully destroyed"
+        format.json { head :no_content }
+      else
+        format.html { redirect_to tanks_url}
+        @tank.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
+        end
+        flash[:warning] = error_messages.join("<\br>")
+        format.json { head :no_content }
+      end
     end
   end
 

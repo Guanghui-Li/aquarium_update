@@ -1,22 +1,27 @@
 <%= form_for(tank) do |f| %>
+  <div class="card">
   <% if tank.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tank.errors.count, "error") %> prohibited this tank from being saved:</h2>
-
+    <div class="card-header bg-danger text-white">
+      <%= pluralize(tank.errors.count, "error") %> prohibited this tank from being saved:
+    </div>
+    <div class="card-body">
       <ul>
       <% tank.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="card-text"><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <form>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
+  </form>
 <% end %>

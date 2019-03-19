@@ -2,25 +2,25 @@
     <!-- Nav Item - Alerts -->
     <li class="nav-item pr-5">
         <div class="nav-link">
-            <%=link_to "Colors", colors_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
+            <%=link_to "Colors", colors_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(colors_path)}" %>
         </div>
     </li>
     
     <li class="nav-item pr-5">
         <div class="nav-link">
-            <%=link_to "Species", species_index_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
+            <%=link_to "Species", species_index_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(species_index_path)}" %>
         </div>
     </li>
     
     <li class="nav-item pr-5">
         <div class="nav-link">
-            <%=link_to "Types", stock_types_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
+            <%=link_to "Types", stock_types_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(stock_types_path)}" %>
         </div>
     </li>
     
     <li class="nav-item pr-5">
         <div class="nav-link">
-            <%=link_to "Statuses", statuses_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
+            <%=link_to "Statuses", statuses_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(statuses_path)}" %>
         </div>
     </li>
 </ul>
