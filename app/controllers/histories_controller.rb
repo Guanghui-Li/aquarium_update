@@ -15,6 +15,7 @@ class HistoriesController < ApplicationController
   # GET /histories/new
   def new
     @history = History.new
+    @history.livestock_id = params[:id]
   end
 
   # GET /histories/1/edit
@@ -24,16 +25,23 @@ class HistoriesController < ApplicationController
   # POST /histories
   # POST /histories.json
   def create
+    error_messages = []
+    bullet = '&#8226 '
     @history = History.new(history_params)
+    puts "hello"
+    puts history_params
 
-    respond_to do |format|
-      if @history.save
+    if @history.save
+      respond_to do |format|
         format.html { redirect_to @history, notice: 'History was successfully created.' }
         format.json { render :show, status: :created, location: @history }
-      else
-        format.html { render :new }
-        format.json { render json: @history.errors, status: :unprocessable_entity }
       end
+    else
+      redirect_to new_history_path(:id => @history.livestock_id)
+      @history.errors.full_messages.each do |message|
+        error_messages.push(bullet + message)
+      end
+      flash[:warning] = error_messages.join("<br/>")
     end
   end
 
@@ -69,6 +77,6 @@ class HistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
-      params.require(:history).permit(:livestock_id, :event)
+      params.require(:history).permit(:livestock_id, :event, :event_date, :image)
     end
 end

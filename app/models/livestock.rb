@@ -4,7 +4,7 @@ class Livestock < ApplicationRecord
     belongs_to :status
     belongs_to :tank
     belongs_to :color
-    has_many :histories
+    has_many :histories, :dependent => :destroy
     mount_uploader :image, ImageUploader
     
     attr_accessor :quantity

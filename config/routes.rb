@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :livestocks
   resources :histories
   
-  match '*path' => redirect('livestocks#index'), via: :get
+  match '*a' => redirect { |p, req| req.flash[:danger] = "Wrong route, the page you are looking for does not exist"; '/' }, via: :get
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

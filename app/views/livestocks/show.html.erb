@@ -46,11 +46,11 @@
       <tr scope="row">
         <td><%= event.event_date %></td>
         <td><%= event.event %></td>
-        <td><%= image_tag event.image_url, width: "100px", height: "100px" if @livestock.image.present? %></td>
+        <td><%= image_tag event.image_url, width: "100px", height: "100px" if event.image.present? %></td>
         <td><%= link_to 'Edit', edit_history_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-
   </tbody>
 </table>
+<%= link_to 'New Event', new_history_path(:id => @livestock.id) %>

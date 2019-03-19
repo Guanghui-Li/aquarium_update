@@ -99,24 +99,24 @@ class LivestocksController < ApplicationController
   # DELETE /livestocks/1.json
   def destroy
     error_messages = []
-    bullet = '&#8226'
-      if @livestock.destroy
-        respond_to do |format|
-          format.html { redirect_to :back }
-          flash[:success] = 'Livestock was successfully destroyed'
-          format.json { head :no_content }
+    bullet = '&#8226 '
+    if @livestock.destroy
+      respond_to do |format|
+        format.html { redirect_to :back }
+        flash[:success] = 'Livestock was successfully destroyed'
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to livestocks_url}
+        @livestock.errors.full_messages.each do |message|
+          error_messages.push(bullet + message)
         end
-      else
-        respond_to do |format|
-          format.html { redirect_to livestocks_url}
-          @livestock.errors.full_messages.each do |message|
-            error_messages.push(bullet + message)
-          end
-          flash[:warning] = error_messages.join("<br/>")
-          format.json { head :no_content }
-        end
+        flash[:warning] = error_messages.join("<br/>")
+        format.json { head :no_content }
       end
     end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
