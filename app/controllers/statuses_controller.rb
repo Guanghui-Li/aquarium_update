@@ -10,6 +10,7 @@ class StatusesController < ApplicationController
   # GET /statuses/1
   # GET /statuses/1.json
   def show
+    @livestocks = Livestock.where("status_id = " + params[:id].to_s)
   end
 
   # GET /statuses/new

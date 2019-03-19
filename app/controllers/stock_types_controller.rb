@@ -10,6 +10,7 @@ class StockTypesController < ApplicationController
   # GET /stock_types/1
   # GET /stock_types/1.json
   def show
+    @livestocks = Livestock.where("stock_type_id = " + params[:id].to_s)
   end
 
   # GET /stock_types/new

@@ -1,9 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<%= link_to 'Back', statuses_path, class: "btn btn-primary" %>
+</br>
+</br>
+<h3>
   <strong>Name:</strong>
   <%= @status.name %>
-</p>
+</h3>
+</br>
+</br>
 
-<%= link_to 'Edit', edit_status_path(@status) %> |
-<%= link_to 'Back', statuses_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Color</th>
+      <th scope="col">Species</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Image</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @livestocks.each do |livestock| %>
+      <tr scope="row">
+        <td><%= livestock.stock_type.name %></td>
+        <td><%= livestock.name %></td>
+        <td><%= livestock.color.name %></td>
+        <td><%= livestock.species.name %></td>
+        <td><%= livestock.purchase_date %></td>
+        <td><%= image_tag livestock.image_url, width: "100px", height: "100px" if livestock.image.present? %></td>
+        <td><%= link_to 'Detail', livestock, class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Edit', edit_livestock_path(livestock), class: "btn btn-outline-primary btn-round" %></td>
+        <td><%= link_to 'Delete', livestock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
