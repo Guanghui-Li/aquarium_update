@@ -4,7 +4,7 @@ class SpeciesController < ApplicationController
   # GET /species
   # GET /species.json
   def index
-    @species = Species.order(:name).all
+    @species = Species.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /species/1
@@ -26,8 +26,7 @@ class SpeciesController < ApplicationController
   # POST /species.json
   def create
     @species = Species.new(species_params)
-    puts "hello"
-    puts species_params
+    @species.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @species.save

@@ -4,7 +4,7 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.order(:name).all
+    @colors = Color.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /colors/1
@@ -26,6 +26,7 @@ class ColorsController < ApplicationController
   # POST /colors.json
   def create
     @color = Color.new(color_params)
+    @color.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @color.save

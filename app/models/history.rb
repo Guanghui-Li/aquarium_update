@@ -1,5 +1,6 @@
 class History < ApplicationRecord
     belongs_to :livestock
+    belongs_to :user
     mount_uploader :image, ImageUploader
     validates :event, presence: true
     validates :event_date, presence: true

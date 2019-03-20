@@ -3,7 +3,7 @@
     <form>
         <div class="form-group">
             Color: &nbsp
-            <%= collection_check_boxes :color, :color_ids, Color.order('name ASC').all, :id, :name do |b| %>
+            <%= collection_check_boxes :color, :color_ids, Color.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
                     <%= b.check_box class: "form-check-input" %>
                     <%= b.label class: "form-check-label" %>
@@ -13,7 +13,7 @@
         
         <div class="form-group">
             <%=label_tag :species,'Species:' %> &nbsp
-            <%= collection_check_boxes :species, :species_ids, Species.order('name ASC').all, :id, :name do |b| %>
+            <%= collection_check_boxes :species, :species_ids, Species.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
                     <%= b.check_box class: "form-check-input" %>
                     <%= b.label class: "form-check-label" %>
@@ -23,7 +23,7 @@
         
         <div class="form-group">
             <%=label_tag :stock_type, 'Type:' %> &nbsp
-            <%= collection_check_boxes :stock_type, :type_ids, StockType.order('name ASC').all, :id, :name do |b| %>
+            <%= collection_check_boxes :stock_type, :type_ids, StockType.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
                     <%= b.check_box class: "form-check-input" %>
                     <%= b.label class: "form-check-label" %>
@@ -33,7 +33,7 @@
         
         <div class="form-group">
             <%=label_tag :status, 'Status: ' %> &nbsp
-            <%= collection_check_boxes :status, :status_ids, Status.order('name ASC').all, :id, :name do |b| %>
+            <%= collection_check_boxes :status, :status_ids, Status.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
                     <%= b.check_box class: "form-check-input" %>
                     <%= b.label class: "form-check-label" %>

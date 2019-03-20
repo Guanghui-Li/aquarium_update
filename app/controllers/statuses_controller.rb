@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.all
+    @statuses = Status.where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /statuses/1
@@ -26,6 +26,7 @@ class StatusesController < ApplicationController
   # POST /statuses.json
   def create
     @status = Status.new(status_params)
+    @status.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @status.save

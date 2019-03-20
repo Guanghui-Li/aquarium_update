@@ -4,7 +4,7 @@ class LivestocksController < ApplicationController
   # GET /livestocks
   # GET /livestocks.json
   def index
-    @livestocks = Livestock.all
+    @livestocks = Livestock.where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /livestocks/1
@@ -26,9 +26,11 @@ class LivestocksController < ApplicationController
   # POST /livestocks.json
   def create
     @livestock = Livestock.new(livestock_params.permit!)
+    @livestock.user_id = current_user.id if current_user
     
     if @livestock.save
       history = History.new(livestock_id: @livestock.id, event: "Purchased", event_date: @livestock.purchase_date, image: @livestock.image)
+      history.user_id = current_user.id if current_user
       history.save!
       respond_to do |format|
         format.html { redirect_to @livestock }
@@ -61,9 +63,11 @@ class LivestocksController < ApplicationController
     else
       quantity.times{
         @livestock = Livestock.new(livestock_params.permit!)
+        @livestock.user_id = current_user.id if current_user
         if @livestock.save
           success = success + 1;
           history = History.new(livestock_id: @livestock.id, event: "Purchased", event_date: @livestock.purchase_date, image: @livestock.image)
+          history.user_id = current_user.id if current_user
           history.save!
         else
           respond_to do |format|
@@ -129,7 +133,7 @@ class LivestocksController < ApplicationController
     statuses = params["status"]["status_ids"].drop(1)
     
     if colors.length == 0 && species.length == 0 && stock_types.length == 0 && statuses.length == 0
-      query = "SELECT * FROM Livestocks"
+      query = "SELECT * FROM Livestocks WHERE id = -1"
     else
       query = "SELECT * FROM Livestocks WHERE "
       query = setQuery(colors, query, "color_id", species)

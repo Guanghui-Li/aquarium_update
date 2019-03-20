@@ -4,7 +4,7 @@ class TanksController < ApplicationController
   # GET /tanks
   # GET /tanks.json
   def index
-    @tanks = Tank.order(:name).all
+    @tanks = Tank.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /tanks/1
@@ -26,6 +26,7 @@ class TanksController < ApplicationController
   # POST /tanks.json
   def create
     @tank = Tank.new(tank_params)
+    @tank.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @tank.save

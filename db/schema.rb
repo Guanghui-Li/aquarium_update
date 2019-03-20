@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320173827) do
+ActiveRecord::Schema.define(version: 20190320210105) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "histories", force: :cascade do |t|
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 20190320173827) do
     t.string   "event_date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "user_id"
   end
 
   create_table "livestocks", force: :cascade do |t|
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 20190320173827) do
     t.integer  "tank_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "memos", force: :cascade do |t|
@@ -45,6 +48,7 @@ ActiveRecord::Schema.define(version: 20190320173827) do
     t.string   "memo_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "species", force: :cascade do |t|
@@ -52,24 +56,28 @@ ActiveRecord::Schema.define(version: 20190320173827) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "stock_type_id"
+    t.integer  "user_id"
   end
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "stock_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "tanks", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "types", force: :cascade do |t|

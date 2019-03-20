@@ -2,8 +2,10 @@ class Species < ApplicationRecord
     before_destroy :ensure_not_referenced_by_any_livestock
     has_many :livestocks
     belongs_to :stock_type
+    belongs_to :user
     
-    validates :name, presence: true, uniqueness: true
+    validates_uniqueness_of :name, :scope => :user_id
+    validates :name, presence: true
     
     
     private

@@ -17,22 +17,22 @@
   <form>
     <div class="form-group">
       <%= f.label :status %>
-      <%= f.collection_select :status_id, Status.order('name ASC').all, :id, :name, {id: :status}, {class: "form-control"}%>
+      <%= f.collection_select :status_id, Status.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name, {id: :status}, {class: "form-control"}%>
     </div>
     
     <div class="form-group">
       <%= f.label :stock_type %>
-      <%= f.collection_select :stock_type_id, StockType.order('name ASC').all, :id, :name, {id: :livestock_stock_type}, {class: "form-control"}%>
+      <%= f.collection_select :stock_type_id, StockType.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name, {id: :livestock_stock_type}, {class: "form-control"}%>
     </div>
     
     <div class="form-group">
       <%= f.label :species %>
-      <%= f.collection_select :species_id, Species.order('name ASC').all, :id, :name, {id: :livestock_species}, {class: "form-control"} %>
+      <%= f.collection_select :species_id, Species.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name, {id: :livestock_species}, {class: "form-control"} %>
     </div>
     
     <div class="form-group">
       <%= f.label :color %>
-      <%= f.collection_select :color_id, Color.order('name ASC').all, :id, :name, {id: :livestock_color}, {class: "form-control"} %>
+      <%= f.collection_select :color_id, Color.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name, {id: :livestock_color}, {class: "form-control"} %>
     </div>
     
     <div class="form-group">
@@ -56,7 +56,7 @@
     
     <div class="form-group">
       <%= f.label :tank %>
-      <%= f.collection_select :tank_id, Tank.order('name ASC').all, :id, :name, {id: :livestock_tank}, {class: "form-control"} %>
+      <%= f.collection_select :tank_id, Tank.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name, {id: :livestock_tank}, {class: "form-control"} %>
     </div>
     
     <div class="actions">

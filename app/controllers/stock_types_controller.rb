@@ -4,7 +4,7 @@ class StockTypesController < ApplicationController
   # GET /stock_types
   # GET /stock_types.json
   def index
-    @stock_types = StockType.order(:name).all
+    @stock_types = StockType.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /stock_types/1
@@ -26,6 +26,7 @@ class StockTypesController < ApplicationController
   # POST /stock_types.json
   def create
     @stock_type = StockType.new(stock_type_params)
+    @stock_type.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @stock_type.save

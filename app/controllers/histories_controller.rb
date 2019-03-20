@@ -4,7 +4,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.all
+    @histories = History.where("user_id = " + (current_user.id.to_s if current_user))
   end
 
   # GET /histories/1
@@ -28,6 +28,7 @@ class HistoriesController < ApplicationController
     error_messages = []
     bullet = '&#8226 '
     @history = History.new(history_params)
+    @history.user_id = current_user.id if current_user
 
     if @history.save
       respond_to do |format|
