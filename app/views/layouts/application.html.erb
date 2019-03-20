@@ -58,7 +58,13 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value.html_safe %></div>
+            <% if key == "notice" %>
+              <div class="alert alert-info"><%= value.html_safe %></div>
+            <% elsif key == "alert" %>
+              <div class="alert alert-danger"><%= value.html_safe %></div>
+            <% else %>
+              <div class="alert alert-<%= key %>"><%= value.html_safe %></div>
+            <% end %>
           <% end %>
           <%= yield %>
         </div>

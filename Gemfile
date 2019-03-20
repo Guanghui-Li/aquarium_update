@@ -12,6 +12,7 @@ gem 'rails', '~> 5.0.7', '>= 5.0.7.1'
 gem 'sqlite3', '~> 1.3.6'
 
 gem 'carrierwave'
+gem 'devise'
 
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap', '~> 4.3.1'

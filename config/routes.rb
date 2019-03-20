@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :memos
   root 'livestocks#index'
   get 'livestocks/bulk_new', to: 'livestocks#bulk_new'
