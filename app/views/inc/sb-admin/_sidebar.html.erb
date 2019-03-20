@@ -45,6 +45,14 @@
   Addons
 </div>
 
+<!-- Nav Item - multifilter -->
+<li class="nav-item <%= current_class?(livestocks_multifilter_path) %>">
+  <%= link_to livestocks_multifilter_path, { :class => "nav-link"} do %>
+    <i class="fas fa-filter"></i>
+    <span>Multifilter</span></a>
+  <% end %>
+</li>
+
 
 <!-- Nav Item - Memo -->
 <li class="nav-item <%= current_class?(memos_path) %>">

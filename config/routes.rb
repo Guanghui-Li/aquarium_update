@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'livestocks#index'
   get 'livestocks/bulk_new', to: 'livestocks#bulk_new'
   post 'livestocks/bulk_create', to: 'livestocks#bulk_create'
+  get 'livestocks/multifilter', to: 'livestocks#multifilter'
+  get 'livestocks/multifilter/results', to: 'livestocks#results'
   resources :statuses
   resources :stock_types
   resources :tanks

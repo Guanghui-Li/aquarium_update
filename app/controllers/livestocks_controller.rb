@@ -117,6 +117,28 @@ class LivestocksController < ApplicationController
       end
     end
   end
+  
+  def multifilter
+    
+  end
+  
+  def results
+    colors = params["color"]["color_ids"].drop(1)
+    species = params["species"]["species_ids"].drop(1)
+    stock_types = params["stock_type"]["type_ids"].drop(1)
+    statuses = params["status"]["status_ids"].drop(1)
+    
+    if colors.length == 0 && species.length == 0 && stock_types.length == 0 && statuses.length == 0
+      query = "SELECT * FROM Livestocks"
+    else
+      query = "SELECT * FROM Livestocks WHERE "
+      query = setQuery(colors, query, "color_id", species)
+      query = setQuery(species, query, "species_id", stock_types)
+      query = setQuery(stock_types, query, "stock_type_id", statuses)
+      query = setQuery(statuses, query, "status_id", [])
+    end
+    @livestocks = Livestock.find_by_sql(query)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -127,5 +149,35 @@ class LivestocksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def livestock_params
       params.fetch(:livestock, {})
+    end
+    
+    def setQuery(attributes, query, ids, nextAttributes)
+      count = 0
+      
+      if attributes.length >= 1
+        if attributes.length == 1
+          query = query + "(" + ids + " = " + attributes[0] +")"
+          if nextAttributes.length >= 1
+            query = query + " AND "
+          end
+        else
+          query = query + "("
+          attributes.each do |attribute|
+            count = count + 1
+            query = query + ids + " = " + attribute.to_s + " "
+            if count < attributes.length
+              query = query + "OR "
+            else
+              query = query + ")"
+              count = 0
+              if nextAttributes.length >= 1
+                query = query + " AND "
+              end
+            end
+          end
+        end
+      end
+      
+      return query
     end
 end
