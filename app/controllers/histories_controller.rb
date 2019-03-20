@@ -28,8 +28,6 @@ class HistoriesController < ApplicationController
     error_messages = []
     bullet = '&#8226 '
     @history = History.new(history_params)
-    puts "hello"
-    puts history_params
 
     if @history.save
       respond_to do |format|

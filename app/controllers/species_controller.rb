@@ -26,6 +26,8 @@ class SpeciesController < ApplicationController
   # POST /species.json
   def create
     @species = Species.new(species_params)
+    puts "hello"
+    puts species_params
 
     respond_to do |format|
       if @species.save
@@ -83,6 +85,6 @@ class SpeciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def species_params
-      params.require(:species).permit(:name)
+      params.require(:species).permit(:name, :stock_type_id)
     end
 end

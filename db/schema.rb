@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319195324) do
+ActiveRecord::Schema.define(version: 20190320152120) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20190319195324) do
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "stock_type_id"
   end
 
   create_table "statuses", force: :cascade do |t|
