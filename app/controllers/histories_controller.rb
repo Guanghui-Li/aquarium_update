@@ -1,5 +1,6 @@
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
+  before_action :access_control, only: [:show, :edit, :update, :destroy]
 
   # GET /histories
   # GET /histories.json
@@ -90,5 +91,12 @@ class HistoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
       params.require(:history).permit(:livestock_id, :event, :event_date, :image)
+    end
+    
+    def access_control
+      if @history.user_id != current_user.id
+        redirect_to livestocks_path
+        flash[:danger] = "Access denied!"
+      end
     end
 end

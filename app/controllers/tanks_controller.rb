@@ -1,5 +1,6 @@
 class TanksController < ApplicationController
   before_action :set_tank, only: [:show, :edit, :update, :destroy]
+  before_action :access_control, only: [:show, :edit, :update, :destroy]
 
   # GET /tanks
   # GET /tanks.json
@@ -85,5 +86,12 @@ class TanksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tank_params
       params.require(:tank).permit(:name)
+    end
+    
+    def access_control
+      if @tank.user_id != current_user.id
+        redirect_to livestocks_path
+        flash[:danger] = "Access denied!"
+      end
     end
 end

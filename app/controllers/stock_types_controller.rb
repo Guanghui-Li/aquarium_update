@@ -1,5 +1,6 @@
 class StockTypesController < ApplicationController
   before_action :set_stock_type, only: [:show, :edit, :update, :destroy]
+  before_action :access_control, only: [:show, :edit, :update, :destroy]
 
   # GET /stock_types
   # GET /stock_types.json
@@ -85,5 +86,12 @@ class StockTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_type_params
       params.require(:stock_type).permit(:name)
+    end
+    
+    def access_control
+      if @stock_type.user_id != current_user.id
+        redirect_to livestocks_path
+        flash[:danger] = "Access denied!"
+      end
     end
 end

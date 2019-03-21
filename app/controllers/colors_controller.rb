@@ -1,5 +1,6 @@
 class ColorsController < ApplicationController
   before_action :set_color, only: [:show, :edit, :update, :destroy]
+  before_action :access_control, only: [:show, :edit, :update, :destroy]
 
   # GET /colors
   # GET /colors.json
@@ -85,5 +86,12 @@ class ColorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
       params.require(:color).permit(:name)
+    end
+    
+    def access_control
+      if @color.user_id != current_user.id
+        redirect_to livestocks_path
+        flash[:danger] = "Access denied!"
+      end
     end
 end

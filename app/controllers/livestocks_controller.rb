@@ -1,5 +1,6 @@
 class LivestocksController < ApplicationController
   before_action :set_livestock, only: [:show, :edit, :update, :destroy]
+  before_action :access_control, only: [:show, :edit, :update, :destroy]
 
   # GET /livestocks
   # GET /livestocks.json
@@ -205,5 +206,12 @@ class LivestocksController < ApplicationController
       end
       
       return query
+    end
+    
+    def access_control
+      if @livestock.user_id != current_user.id
+        redirect_to livestocks_path
+        flash[:danger] = "Access denied!"
+      end
     end
 end
