@@ -1,40 +1,42 @@
-<ul class="navbar-nav mr-auto">
-    <!-- Nav Item - Alerts -->
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Colors", colors_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(colors_path)}" %>
-        </div>
-    </li>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav navbar-nav mr-auto">
+        <!-- Nav Item - Alerts -->
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Colors", colors_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(colors_path)}" %>
+            </div>
+        </li>
+        
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Species", species_index_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(species_index_path)}" %>
+            </div>
+        </li>
+        
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Types", stock_types_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(stock_types_path)}" %>
+            </div>
+        </li>
+        
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Statuses", statuses_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(statuses_path)}" %>
+            </div>
+        </li>
+    </ul>
     
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Species", species_index_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(species_index_path)}" %>
-        </div>
-    </li>
-    
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Types", stock_types_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(stock_types_path)}" %>
-        </div>
-    </li>
-    
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Statuses", statuses_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn #{current_class?(statuses_path)}" %>
-        </div>
-    </li>
-</ul>
-
-<ul class="navbar-nav ml-auto">
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Settings", edit_user_registration_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
-        </div>
-    </li>
-    
-    <li class="nav-item pr-5">
-        <div class="nav-link">
-            <%=link_to "Sign Out", destroy_user_session_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn", method: :delete %>
-        </div>
-    </li>
-</ul>
+    <ul class=" nav navbar-nav ml-auto">
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Settings", edit_user_registration_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn" %>
+            </div>
+        </li>
+        
+        <li class="nav-item pr-5">
+            <div class="nav-link">
+                <%=link_to "Sign Out", destroy_user_session_path, class: "btn btn-outline-primary btn-rounded waves-effect nav-btn", method: :delete %>
+            </div>
+        </li>
+    </ul>
+</div>
