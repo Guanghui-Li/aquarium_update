@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/about'
+
   devise_for :users
   resources :memos
   root 'livestocks#index'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :species
   resources :livestocks
   resources :histories
+  get 'pages/about', to: 'pages#about'
   
   match '*a' => redirect { |p, req| req.flash[:danger] = "Wrong route, the page you are looking for does not exist"; '/' }, via: :get
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
