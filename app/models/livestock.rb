@@ -17,7 +17,7 @@ class Livestock < ApplicationRecord
     validates :color, presence: true
     validates :tank, presence: true
     validates :image_url, allow_blank: true, format: {
-        with: %r{\.(gif|jpg|png)\Z}i,
-        message: 'must be a URL for GIF, JPG or PNG image'
+        with: %r{\.(gif|jpg|png|jpeg)\Z}i,
+        message: 'must be a URL for GIF, JPG, jpeg or PNG image'
     }
 end
