@@ -6,6 +6,6 @@ class CreateColors < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_foreign_key :colors, :users
+    # add_foreign_key :colors, :users
   end
 end

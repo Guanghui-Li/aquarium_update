@@ -7,6 +7,6 @@ class CreateMemos < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_foreign_key :memos, :users
+    # add_foreign_key :memos, :users
   end
 end

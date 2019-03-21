@@ -6,6 +6,6 @@ class CreateStockTypes < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_foreign_key :stock_types, :users
+    # add_foreign_key :stock_types, :users
   end
 end

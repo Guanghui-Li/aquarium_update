@@ -9,7 +9,7 @@ class CreateHistories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     
-    add_foreign_key :histories, :livestocks
-    add_foreign_key :histories, :users
+    # add_foreign_key :histories, :livestocks
+    # add_foreign_key :histories, :users
   end
 end

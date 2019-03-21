@@ -5,6 +5,6 @@ class CreateSpecies < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.timestamps
     end
-    add_foreign_key :species, :users
+    # add_foreign_key :species, :users
   end
 end
