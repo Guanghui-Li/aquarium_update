@@ -5,9 +5,11 @@ class CreateHistories < ActiveRecord::Migration[5.0]
       t.string :event
       t.string :image
       t.string :event_date
+      t.integer :user_id
       t.timestamps
     end
     
     add_foreign_key :histories, :livestocks
+    add_foreign_key :histories, :users
   end
 end

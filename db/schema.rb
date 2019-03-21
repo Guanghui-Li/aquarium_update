@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320210105) do
+ActiveRecord::Schema.define(version: 20190321041222) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
   create_table "histories", force: :cascade do |t|
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20190320210105) do
     t.string   "event"
     t.string   "image"
     t.string   "event_date"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "user_id"
   end
 
   create_table "livestocks", force: :cascade do |t|
@@ -35,53 +35,47 @@ ActiveRecord::Schema.define(version: 20190320210105) do
     t.string   "purchase_date"
     t.integer  "status_id"
     t.integer  "color_id"
-    t.text     "name"
+    t.string   "name"
     t.string   "image"
     t.integer  "tank_id"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "user_id"
   end
 
   create_table "memos", force: :cascade do |t|
     t.string   "description"
     t.string   "memo_date"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "stock_type_id"
-    t.integer  "user_id"
   end
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
   create_table "stock_types", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
   create_table "tanks", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer  "user_id"
-  end
-
-  create_table "types", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
