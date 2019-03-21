@@ -131,15 +131,37 @@ class LivestocksController < ApplicationController
     species = params["species"]["species_ids"].drop(1)
     stock_types = params["stock_type"]["type_ids"].drop(1)
     statuses = params["status"]["status_ids"].drop(1)
+    tanks = params["tank"]["tank_ids"].drop(1)
     
-    if colors.length == 0 && species.length == 0 && stock_types.length == 0 && statuses.length == 0
+    if tanks.length == 0 && colors.length == 0 && species.length == 0 && stock_types.length == 0 && statuses.length == 0
       query = "SELECT * FROM Livestocks WHERE id = -1"
     else
       query = "SELECT * FROM Livestocks WHERE "
-      query = setQuery(colors, query, "color_id", species)
-      query = setQuery(species, query, "species_id", stock_types)
-      query = setQuery(stock_types, query, "stock_type_id", statuses)
-      query = setQuery(statuses, query, "status_id", [])
+      if colors.length > 0 || species.length > 0 || stock_types.length > 0 || statuses.length > 0
+        query = setQuery(tanks, query, "tank_id", true)
+      else
+        query = setQuery(tanks, query, "tank_id", false)
+      end
+      
+      if species.length > 0 || stock_types.length > 0 || statuses.length > 0
+        query = setQuery(colors, query, "color_id", true)
+      else
+        query = setQuery(colors, query, "color_id", false)
+      end
+      
+      
+      if stock_types.length > 0 || statuses.length > 0
+        query = setQuery(species, query, "species_id", true)
+      else
+        query = setQuery(species, query, "species_id", false)
+      end
+      
+      if statuses.length > 0
+        query = setQuery(stock_types, query, "stock_type_id", true)
+      else
+        query = setQuery(stock_types, query, "stock_type_id", false)
+      end
+      query = setQuery(statuses, query, "status_id", false)
     end
     @livestocks = Livestock.find_by_sql(query)
   end
@@ -155,13 +177,13 @@ class LivestocksController < ApplicationController
       params.fetch(:livestock, {})
     end
     
-    def setQuery(attributes, query, ids, nextAttributes)
+    def setQuery(attributes, query, ids, append)
       count = 0
       
       if attributes.length >= 1
         if attributes.length == 1
           query = query + "(" + ids + " = " + attributes[0] +")"
-          if nextAttributes.length >= 1
+          if append
             query = query + " AND "
           end
         else
@@ -174,7 +196,7 @@ class LivestocksController < ApplicationController
             else
               query = query + ")"
               count = 0
-              if nextAttributes.length >= 1
+              if append
                 query = query + " AND "
               end
             end
