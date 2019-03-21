@@ -44,3 +44,13 @@
     </div>
   <form>
 <% end %>
+
+<%= javascript_tag do %>
+  if(document.getElementById("history_image")!=null){
+    document.getElementById("history_image").addEventListener("input", function(){
+    var fullPath = this.value;
+    var filename = fullPath.replace(/^.*[\\\/]/, '');
+    document.getElementById("image-label").innerHTML = filename;
+   });
+  }
+<% end %>
