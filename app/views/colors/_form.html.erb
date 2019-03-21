@@ -1,7 +1,7 @@
 
 <%= form_for(color) do |f| %>
-  <div class="card">
-    <% if color.errors.any? %>
+  <% if color.errors.any? %>
+    <div class="card">
       <div class="card-header bg-danger text-white">
         <%= pluralize(color.errors.count, "error") %> prohibited this color from being saved:
       </div>
@@ -12,8 +12,8 @@
         <% end %>
         </ul>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <form>
     <div class="form-group">

@@ -5,7 +5,7 @@ class MemosController < ApplicationController
   # GET /memos
   # GET /memos.json
   def index
-    @memos = Memo.where("user_id = " + (current_user.id.to_s if current_user))
+    @memos = Memo.where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10).order('memo_date DESC')
   end
 
   # GET /memos/1

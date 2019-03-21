@@ -5,13 +5,13 @@ class TanksController < ApplicationController
   # GET /tanks
   # GET /tanks.json
   def index
-    @tanks = Tank.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
+    @tanks = Tank.order(:name).where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /tanks/1
   # GET /tanks/1.json
   def show
-    @livestocks = Livestock.where("tank_id = " + params[:id].to_s)
+    @livestocks = Livestock.where("tank_id = " + params[:id].to_s).paginate(page: params[:page], per_page: 10).order('purchase_date DESC')
   end
 
   # GET /tanks/new

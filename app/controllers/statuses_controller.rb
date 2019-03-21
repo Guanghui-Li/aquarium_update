@@ -5,13 +5,13 @@ class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.where("user_id = " + (current_user.id.to_s if current_user))
+    @statuses = Status.order(:name).where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /statuses/1
   # GET /statuses/1.json
   def show
-    @livestocks = Livestock.where("status_id = " + params[:id].to_s)
+    @livestocks = Livestock.where("status_id = " + params[:id].to_s).paginate(page: params[:page], per_page: 10).order('purchase_date DESC')
   end
 
   # GET /statuses/new

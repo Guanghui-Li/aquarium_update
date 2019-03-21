@@ -1,6 +1,6 @@
 <%= form_for(status) do |f| %>
-  <div class="card">
-    <% if status.errors.any? %>
+  <% if status.errors.any? %>
+    <div class="card">
       <div class="card-header bg-danger text-white">
         <%= pluralize(status.errors.count, "error") %> prohibited this status from being saved:
       </div>
@@ -11,8 +11,8 @@
         <% end %>
         </ul>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   
   <form>
     <div class="form-group">

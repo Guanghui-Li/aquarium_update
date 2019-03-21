@@ -5,13 +5,13 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
+    @colors = Color.order(:name).where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /colors/1
   # GET /colors/1.json
   def show
-    @livestocks = Livestock.where("color_id = " + params[:id].to_s)
+    @livestocks = Livestock.where("color_id = " + params[:id].to_s).paginate(page: params[:page], per_page: 10).order('purchase_date DESC')
   end
 
   # GET /colors/new

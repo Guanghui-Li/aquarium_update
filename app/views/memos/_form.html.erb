@@ -1,6 +1,6 @@
 <%= form_for(memo) do |f| %>
-  <div class="card">
-    <% if memo.errors.any? %>
+  <% if memo.errors.any? %>
+    <div class="card">
       <div class="card-header bg-danger text-white">
         <%= pluralize(memo.errors.count, "error") %> prohibited this memo from being saved:
       </div>
@@ -10,8 +10,8 @@
         <% end %>
         </ul>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :memo_date %>

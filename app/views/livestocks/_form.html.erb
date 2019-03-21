@@ -1,6 +1,6 @@
 <%= form_for(livestock) do |f| %>
-  <div class="card">
-    <% if livestock.errors.any? %>
+  <% if livestock.errors.any? %>
+    <div class="card">
       <div class="card-header bg-danger text-white">
         <%= pluralize(livestock.errors.count, "error") %> prohibited this livestock from being saved:
       </div>
@@ -11,8 +11,8 @@
         <% end %>
         </ul>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   
   <form>
     <div class="form-group">

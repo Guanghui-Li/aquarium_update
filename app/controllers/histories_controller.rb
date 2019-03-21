@@ -5,7 +5,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.where("user_id = " + (current_user.id.to_s if current_user))
+    @histories = History.where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /histories/1

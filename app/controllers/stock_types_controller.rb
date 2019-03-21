@@ -5,13 +5,13 @@ class StockTypesController < ApplicationController
   # GET /stock_types
   # GET /stock_types.json
   def index
-    @stock_types = StockType.order(:name).where("user_id = " + (current_user.id.to_s if current_user))
+    @stock_types = StockType.order(:name).where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /stock_types/1
   # GET /stock_types/1.json
   def show
-    @livestocks = Livestock.where("stock_type_id = " + params[:id].to_s)
+    @livestocks = Livestock.where("stock_type_id = " + params[:id].to_s).paginate(page: params[:page], per_page: 10).order('purchase_date DESC')
   end
 
   # GET /stock_types/new

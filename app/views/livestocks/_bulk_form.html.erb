@@ -1,13 +1,16 @@
 <%= form_for(livestock, :url => livestocks_bulk_create_path ) do |f| %>
   <% if livestock.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(livestock.errors.count, "error") %> prohibited this livestock from being saved:</h2>
-
-      <ul>
-      <% livestock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="card">
+      <div class="card-header bg-danger text-white">
+        <%= pluralize(livestock.errors.count, "error") %> prohibited this livestock from being saved:
+      </div>
+      <div class="card-body">
+        <ul>
+        <% livestock.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
   

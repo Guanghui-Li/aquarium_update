@@ -5,13 +5,13 @@ class LivestocksController < ApplicationController
   # GET /livestocks
   # GET /livestocks.json
   def index
-    @livestocks = Livestock.where("user_id = " + (current_user.id.to_s if current_user))
+    @livestocks = Livestock.where("user_id = " + (current_user.id.to_s if current_user)).paginate(page: params[:page], per_page: 10).order('purchase_date DESC')
   end
 
   # GET /livestocks/1
   # GET /livestocks/1.json
   def show
-    @events = History.where("livestock_id = " + @livestock.id.to_s)
+    @events = History.where("livestock_id = " + @livestock.id.to_s).paginate(page: params[:page], per_page: 5).order('event_date DESC')
   end
 
   # GET /livestocks/new
@@ -164,7 +164,7 @@ class LivestocksController < ApplicationController
       end
       query = setQuery(statuses, query, "status_id", false)
     end
-    @livestocks = Livestock.find_by_sql(query)
+    @livestocks = Livestock.find_by_sql(query).paginate(page: params[:page], per_page: 10)
   end
 
   private
