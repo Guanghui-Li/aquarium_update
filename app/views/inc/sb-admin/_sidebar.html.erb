@@ -72,8 +72,8 @@
 </div>
 
 <!-- Nav Item - About -->
-<li class="nav-item <%= current_class?(memos_path) %>">
-  <%= link_to memos_path, { :class => "nav-link"} do %>
+<li class="nav-item <%= current_class?("/pages/about") %>">
+  <%= link_to "/pages/about", { :class => "nav-link"} do %>
     <i class="fas fa-question-circle"></i>
     <span>About</span></a>
   <% end %>
