@@ -2,25 +2,27 @@
 
 <h1>Stock Types</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stock_types.each do |stock_type| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= stock_type.name %></td>
-        <td><%= link_to 'Show', stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Edit', edit_stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Delete', stock_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        <th>Name</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @stock_types.each do |stock_type| %>
+        <tr>
+          <td><%= stock_type.name %></td>
+          <td><%= link_to 'Show', stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Edit', edit_stock_type_path(stock_type), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Delete', stock_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 

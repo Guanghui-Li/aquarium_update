@@ -2,25 +2,27 @@
 
 <h1>Species</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @species.each do |species| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= species.name %></td>
-        <td><%= link_to 'Show', species_path(species), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Edit', edit_species_path(species), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Delete', species, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        <th>Name</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @species.each do |species| %>
+        <tr>
+          <td><%= species.name %></td>
+          <td><%= link_to 'Show', species_path(species), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Edit', edit_species_path(species), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Delete', species, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 

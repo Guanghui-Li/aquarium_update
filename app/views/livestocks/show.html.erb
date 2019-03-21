@@ -3,55 +3,59 @@
 </br>
 <h1>Livestock</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Name</th>
-      <th scope="col">Color</th>
-      <th scope="col">Species</th>
-      <th scope="col">Purchase Date</th>
-      <th scope="col">Image</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr scope="row">
-      <td><%= @livestock.stock_type.name %></td>
-      <td><%= @livestock.name %></td>
-      <td><%= @livestock.color.name %></td>
-      <td><%= @livestock.species.name %></td>
-      <td><%= @livestock.purchase_date %></td>
-      <td><%= image_tag @livestock.image_url, width: "100px", height: "100px" if @livestock.image.present? %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Name</th>
+        <th scope="col">Color</th>
+        <th scope="col">Species</th>
+        <th scope="col">Purchase Date</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr scope="row">
+        <td><%= @livestock.stock_type.name %></td>
+        <td><%= @livestock.name %></td>
+        <td><%= @livestock.color.name %></td>
+        <td><%= @livestock.species.name %></td>
+        <td><%= @livestock.purchase_date %></td>
+        <td><%= image_tag @livestock.image_url, width: "100px", height: "100px" if @livestock.image.present? %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   <%= link_to 'Edit', edit_livestock_path(@livestock), class: "btn btn-primary" %>
   <%= link_to 'Delete', @livestock, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-dark float-right" %>
 
 </br></br>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Event Date</th>
-      <th scope="col">Event Detail</th>
-      <th scope="col">Image</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <% @events.each do |event| %>
-      <tr scope="row">
-        <td><%= event.event_date %></td>
-        <td><%= event.event %></td>
-        <td><%= image_tag event.image_url, width: "100px", height: "100px" if event.image.present? %></td>
-        <td><%= link_to 'Edit', edit_history_path(event), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Event Date</th>
+        <th scope="col">Event Detail</th>
+        <th scope="col">Image</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+        <% @events.each do |event| %>
+        <tr scope="row">
+          <td><%= event.event_date %></td>
+          <td><%= event.event %></td>
+          <td><%= image_tag event.image_url, width: "100px", height: "100px" if event.image.present? %></td>
+          <td><%= link_to 'Edit', edit_history_path(event), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <%= link_to 'New Event', new_history_path(:id => @livestock.id), class: "btn btn-primary" %>

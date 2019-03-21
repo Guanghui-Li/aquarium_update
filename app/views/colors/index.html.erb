@@ -1,24 +1,26 @@
 <h1>Colors</h1>
 
-<table class="table ">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @colors.each do |color| %>
+<div class="table-responsive">
+  <table class="table ">
+    <thead>
       <tr>
-        <td><%= color.name %></td>
-        <td><%= link_to 'Show', color_path(color), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Edit', edit_color_path(color), class: "btn btn-outline-primary btn-round" %></td>
-        <td><%= link_to 'Delete', color, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        <th>Name</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @colors.each do |color| %>
+        <tr>
+          <td><%= color.name %></td>
+          <td><%= link_to 'Show', color_path(color), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Edit', edit_color_path(color), class: "btn btn-outline-primary btn-round" %></td>
+          <td><%= link_to 'Delete', color, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-round" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
