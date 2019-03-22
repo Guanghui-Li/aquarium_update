@@ -5,8 +5,11 @@
             <%=label_tag :tank, 'Tank: ' %> &nbsp
             <%= collection_check_boxes :tank, :tank_ids, Tank.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.label class: "form-check-label" %>
+                    <%= b.label class: "btn btn-primary " do %>
+                        <%= b.label %>
+                        <%= b.check_box class: "badgebox" %>
+                        <span class="badge">&check;</span>
+                    <% end %>
                 </div>
             <% end %>
         </div>
@@ -15,8 +18,11 @@
             <%=label_tag :status, 'Status: ' %> &nbsp
             <%= collection_check_boxes :status, :status_ids, Status.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
                 <div class="form-check-inline">
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.label class: "form-check-label" %>
+                    <%= b.label class: "btn btn-primary " do %>
+                        <%= b.label %>
+                        <%= b.check_box class: "badgebox" %>
+                        <span class="badge">&check;</span>
+                    <% end %>
                 </div>
             <% end %>
         </div>
@@ -24,30 +30,33 @@
         <div class="form-group">
             <%=label_tag :stock_type, 'Type:' %> &nbsp
             <%= collection_check_boxes :stock_type, :type_ids, StockType.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <div class="form-check-inline">
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.label class: "form-check-label" %>
-                </div>
+                    <%= b.label class: "btn btn-primary " do %>
+                        <%= b.label %>
+                        <%= b.check_box class: "badgebox" %>
+                        <span class="badge">&check;</span>
+                    <% end %>
             <% end %>
         </div>
         
         <div class="form-group">
-            Color: &nbsp
+            <%=label_tag :color, 'Color:' %> &nbsp
             <%= collection_check_boxes :color, :color_ids, Color.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <div class="form-check-inline">
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.label class: "form-check-label" %>
-                </div>
-            <% end %>
+                <%= b.label class: "btn btn-primary" do %>
+                    <%= b.label %>
+                    <%= b.check_box class: "badgebox" %>
+                    <span class="badge">&check;</span>
+                <% end %>
+            <%end%>
         </div>
         
         <div class="form-group">
             <%=label_tag :species,'Species:' %> &nbsp
             <%= collection_check_boxes :species, :species_ids, Species.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <div class="form-check-inline">
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.label class: "form-check-label" %>
-                </div>
+                <%= b.label class: "btn btn-primary " do %>
+                    <%= b.label %>
+                    <%= b.check_box class: "badgebox" %>
+                    <span class="badge">&check;</span>
+                <% end %>
             <% end %>
         </div>
     
