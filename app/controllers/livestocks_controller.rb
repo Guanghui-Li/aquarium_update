@@ -1,6 +1,7 @@
 class LivestocksController < ApplicationController
   before_action :set_livestock, only: [:show, :edit, :update, :destroy]
   before_action :access_control, only: [:show, :edit, :update, :destroy]
+  require 'will_paginate/array'
 
   # GET /livestocks
   # GET /livestocks.json
@@ -164,6 +165,7 @@ class LivestocksController < ApplicationController
       end
       query = setQuery(statuses, query, "status_id", false)
     end
+    query = query + " ORDER BY purchase_date DESC"
     @livestocks = Livestock.find_by_sql(query).paginate(page: params[:page], per_page: 10)
   end
 
