@@ -166,7 +166,9 @@ class LivestocksController < ApplicationController
       query = setQuery(statuses, query, "status_id", false)
     end
     query = query + " ORDER BY purchase_date DESC"
-    @livestocks = Livestock.find_by_sql(query).paginate(page: params[:page], per_page: 10)
+    @livestocks = Livestock.find_by_sql(query)
+    @length = @livestocks.count
+    @livestocks = @livestocks.paginate(page: params[:page], per_page: 10)
   end
 
   private
