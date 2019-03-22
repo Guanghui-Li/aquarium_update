@@ -3,39 +3,76 @@
     <form>
         <div class="form-group">
             <%=label_tag :tank, 'Tank: ' %> &nbsp
-            <%= collection_check_boxes :tank, :tank_ids, Tank.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <div class="form-check-inline">
-                    <%= b.label class: "btn btn-primary " do %>
-                        <%= b.label %>
-                        <%= b.check_box class: "badgebox" %>
-                        <span class="badge">&check;</span>
-                    <% end %>
-                </div>
-            <% end %>
-        </div>
-        
+            <div class="table-responsive">
+                <table class=table>
+                    <% count = 0 %>
+                    <%= collection_check_boxes :tank, :tank_ids, Tank.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
+                        <% count = count + 1 %>
+                        <% if (count-1)%5 == 0%>
+                            <%= "<tr>".html_safe%>
+                        <% end %>
+                            <td>
+                                <%= b.label class: "btn btn-primary" do %>
+                                    <%= b.label %>
+                                    <%= b.check_box class: "badgebox" %>
+                                    <span class="badge">&check;</span>
+                                <% end %>
+                            </td>
+                        <% if (count-1)%5 == 0 %>
+                            <% "</tr>".html_safe %>
+                        <% end %>
+                    <%end%>
+                </table>
+            </div>
+        </div>   
         <div class="form-group">
             <%=label_tag :status, 'Status: ' %> &nbsp
-            <%= collection_check_boxes :status, :status_ids, Status.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <div class="form-check-inline">
-                    <%= b.label class: "btn btn-primary " do %>
-                        <%= b.label %>
-                        <%= b.check_box class: "badgebox" %>
-                        <span class="badge">&check;</span>
-                    <% end %>
-                </div>
-            <% end %>
-        </div>
+            <div class="table-responsive">
+                <table class=table>
+                    <% count = 0 %>
+                    <%= collection_check_boxes :status, :status_ids, Status.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
+                        <% count = count + 1 %>
+                        <% if (count-1)%5 == 0%>
+                            <%= "<tr>".html_safe%>
+                        <% end %>
+                            <td>
+                                <%= b.label class: "btn btn-primary" do %>
+                                    <%= b.label %>
+                                    <%= b.check_box class: "badgebox" %>
+                                    <span class="badge">&check;</span>
+                                <% end %>
+                            </td>
+                        <% if (count-1)%5 == 0 %>
+                            <% "</tr>".html_safe %>
+                        <% end %>
+                    <%end%>
+                </table>
+            </div>
+        </div>       
         
         <div class="form-group">
             <%=label_tag :stock_type, 'Type:' %> &nbsp
-            <%= collection_check_boxes :stock_type, :type_ids, StockType.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                    <%= b.label class: "btn btn-primary " do %>
-                        <%= b.label %>
-                        <%= b.check_box class: "badgebox" %>
-                        <span class="badge">&check;</span>
-                    <% end %>
-            <% end %>
+            <div class="table-responsive">
+                <table class=table>
+                    <% count = 0 %>
+                    <%= collection_check_boxes :stock_type, :type_ids, StockType.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
+                        <% count = count + 1 %>
+                        <% if (count-1)%5 == 0%>
+                            <%= "<tr>".html_safe%>
+                        <% end %>
+                            <td>
+                                <%= b.label class: "btn btn-primary" do %>
+                                    <%= b.label %>
+                                    <%= b.check_box class: "badgebox" %>
+                                    <span class="badge">&check;</span>
+                                <% end %>
+                            </td>
+                        <% if (count-1)%5 == 0 %>
+                            <% "</tr>".html_safe %>
+                        <% end %>
+                    <%end%>
+                </table>
+            </div>
         </div>
         
         <div class="form-group">
@@ -65,18 +102,35 @@
         
         <div class="form-group">
             <%=label_tag :species,'Species:' %> &nbsp
-            <%= collection_check_boxes :species, :species_ids, Species.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <%= b.label class: "btn btn-primary " do %>
-                    <%= b.label %>
-                    <%= b.check_box class: "badgebox" %>
-                    <span class="badge">&check;</span>
-                <% end %>
-            <% end %>
+            <div class="table-responsive">
+                <table class=table>
+                    <% count = 0 %>
+                    <%= collection_check_boxes :species, :species_ids, Species.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
+                        <% count = count + 1 %>
+                        <% if (count-1)%5 == 0%>
+                            <%= "<tr>".html_safe%>
+                        <% end %>
+                        <td>
+                            <%= b.label class: "btn btn-primary" do %>
+                                <%= b.label %>
+                                <%= b.check_box class: "badgebox" %>
+                                <span class="badge">&check;</span>
+                            <% end %>
+                        </td>
+                        <% if (count-1)%5 == 0 %>
+                            <% "</tr>".html_safe %>
+                        <% end %>
+                    <%end%>
+                </table>
+            </div>
         </div>
     
+        <hr>
         
+
         <div class="actions">
           <%= submit_tag 'Submit', :class => "btn btn-primary" %>
         </div>
+
     </form>
 <% end %>
