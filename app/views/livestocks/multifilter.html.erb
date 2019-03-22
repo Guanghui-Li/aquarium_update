@@ -40,13 +40,27 @@
         
         <div class="form-group">
             <%=label_tag :color, 'Color:' %> &nbsp
-            <%= collection_check_boxes :color, :color_ids, Color.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
-                <%= b.label class: "btn btn-primary" do %>
-                    <%= b.label %>
-                    <%= b.check_box class: "badgebox" %>
-                    <span class="badge">&check;</span>
-                <% end %>
-            <%end%>
+            <div class="table-responsive">
+                <table class=table>
+                    <% count = 0 %>
+                    <%= collection_check_boxes :color, :color_ids, Color.order('name ASC').where("user_id = " + (current_user.id.to_s if current_user)), :id, :name do |b| %>
+                        <% count = count + 1 %>
+                        <% if (count-1)%5 == 0%>
+                            <%= "<tr>".html_safe%>
+                        <% end %>
+                            <td>
+                                <%= b.label class: "btn btn-primary" do %>
+                                    <%= b.label %>
+                                    <%= b.check_box class: "badgebox" %>
+                                    <span class="badge">&check;</span>
+                                <% end %>
+                            </td>
+                        <% if (count-1)%5 == 0 %>
+                            <% "</tr>".html_safe %>
+                        <% end %>
+                    <%end%>
+                </table>
+            </div>
         </div>
         
         <div class="form-group">
